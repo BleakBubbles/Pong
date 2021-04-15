@@ -53,13 +53,13 @@ public class Ball : MonoBehaviour
         counter++;
         LeftPaddle.transform.position = new Vector2(-6, 0);
         RightPaddle.transform.position = new Vector2(6, 0);
+        if (OnLevelReset != null)
+            OnLevelReset.Invoke();
     }
 
     public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        if(OnLevelReset != null)
-            OnLevelReset.Invoke();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

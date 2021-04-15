@@ -9,6 +9,8 @@ public class Scattershot : Item
     {
         base.Pickup(ball, playerPaddle);
         ball.OnHitPaddle += this.onHitPaddle;
+        IsPermanent = false;
+        LevelsToLast = 2;
         Debug.Log("pickup ran");
     }
 
