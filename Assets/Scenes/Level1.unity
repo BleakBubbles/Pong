@@ -388,6 +388,8 @@ MonoBehaviour:
   Player: {fileID: 1065545209}
   AiPaddle: {fileID: 1009402865}
   ballScript: {fileID: 2139998763}
+  countdown: {fileID: 1051062128860208076}
+  panel: {fileID: 1051062128860208075}
 --- !u!4 &1280095983
 Transform:
   m_ObjectHideFlags: 0
@@ -580,6 +582,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da02499eebf6f2d41ae1269d41844b9f, type: 3}
+--- !u!1 &1051062128860208075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1625948012658684534, guid: da02499eebf6f2d41ae1269d41844b9f, type: 3}
+  m_PrefabInstance: {fileID: 1051062128860208074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1051062128860208076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6678469565082851518, guid: da02499eebf6f2d41ae1269d41844b9f, type: 3}
+  m_PrefabInstance: {fileID: 1051062128860208074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1444368383326458946
 PrefabInstance:
   m_ObjectHideFlags: 0
