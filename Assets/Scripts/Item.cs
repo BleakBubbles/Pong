@@ -7,9 +7,13 @@ public class Item : ItemButSomeAbstractStuff
 {
     public bool IsPermanent = true;
     public int LevelsToLast;
+    public Sprite DisplaySprite;
     private void Start()
     {
+        Debug.Log("ran item start");
         var btn = this.gameObject.GetOrAddComponent<Button>();
+        var img = this.gameObject.GetOrAddComponent<Image>();
+        img.sprite = DisplaySprite;
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener( () => { this.OnClick(); });
         btn.targetGraphic = this.GetComponent<Image>();
@@ -17,25 +21,22 @@ public class Item : ItemButSomeAbstractStuff
          colors.highlightedColor = Color.grey;
         btn.colors = colors;
         IsPermanent = true;
-
+        Game.items.Add(this);
     }
 
     private void OnClick()
     {
         this.Pickup(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
-        Debug.Log("clicked");
     }
 
     public override void Pickup(Ball ball, Player playerPaddle)
     {
         playerPaddle.AcquireItem(this);
-        Debug.Log("Ran Item Pickup");
         ball.OnLevelReset += this.OnReset;
     }
 
 	private void OnReset()
 	{
-        Debug.Log("onreset ran");
         if (IsPermanent == false)
         {
             LevelsToLast--;

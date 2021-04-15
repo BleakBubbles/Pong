@@ -9,13 +9,11 @@ public class Scattershot : Item
     {
         base.Pickup(ball, playerPaddle);
         ball.OnHitPaddle += this.onHitPaddle;
-        IsPermanent = false;
-        LevelsToLast = 2;
-        Debug.Log("pickup ran");
+        IsPermanent = true;
+        LevelsToLast = 2;     
     }
 
     private void onHitPaddle(GameObject ball, Collider2D paddle)
     {
-        Debug.Log("OnHitRan");
     }
 }
