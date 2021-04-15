@@ -238,7 +238,6 @@ GameObject:
   m_Component:
   - component: {fileID: 890546184}
   - component: {fileID: 890546187}
-  - component: {fileID: 890546186}
   - component: {fileID: 890546185}
   m_Layer: 5
   m_Name: GameObject
@@ -278,36 +277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a744e9d47d4767441ba3d92541e2b694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &890546186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890546183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c0ac14b73b67df4cac11e8091e6c8d6, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  IsPermanent: 1
+  LevelsToLast: 0
+  DisplaySprite: {fileID: 21300000, guid: 9c0ac14b73b67df4cac11e8091e6c8d6, type: 3}
 --- !u!222 &890546187
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -338,11 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8db50263c1a5341a2604e0a5a4d778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartDelay: 1
-  Ball: {fileID: 0}
-  ball: {fileID: 2379567463681992461, guid: b1e353fa606869b478b9525840be206f, type: 3}
-  LeftPaddle: {fileID: 3869979991882567614, guid: 9c483df8c86e78c498da7877d49cde79, type: 3}
-  RightPaddle: {fileID: 3339379871343611159, guid: 3dd10896124c1354aa32cdfbf6b05401, type: 3}
 --- !u!114 &933161562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,11 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8db50263c1a5341a2604e0a5a4d778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartDelay: 1
-  Ball: {fileID: 0}
-  ball: {fileID: 2379567463681992461, guid: b1e353fa606869b478b9525840be206f, type: 3}
-  LeftPaddle: {fileID: 3869979991882567614, guid: 9c483df8c86e78c498da7877d49cde79, type: 3}
-  RightPaddle: {fileID: 3339379871343611159, guid: 3dd10896124c1354aa32cdfbf6b05401, type: 3}
 --- !u!1 &950601545
 GameObject:
   m_ObjectHideFlags: 0
