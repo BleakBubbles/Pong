@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Scattershot : Item
 {
+	private void Awake()
+	{
+		DisplaySprite = Resources.Load<Sprite>("Sprites/crown");
+        ItemName = "scattershot";
+    }
+
     public override void Pickup(Ball ball, Player playerPaddle)
     {
         base.Pickup(ball, playerPaddle);

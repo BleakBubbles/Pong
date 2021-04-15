@@ -8,6 +8,8 @@ public class Item : ItemButSomeAbstractStuff
     public bool IsPermanent = true;
     public int LevelsToLast;
     public Sprite DisplaySprite;
+    public string ItemName;
+    public Type t;
     private void Start()
     {
         Debug.Log("ran item start");
@@ -20,8 +22,7 @@ public class Item : ItemButSomeAbstractStuff
         ColorBlock colors = btn.colors;
          colors.highlightedColor = Color.grey;
         btn.colors = colors;
-        IsPermanent = true;
-        Game.items.Add(this);
+        t = this.GetType(); 
     }
 
     private void OnClick()

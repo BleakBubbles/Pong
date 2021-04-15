@@ -217,6 +217,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &487777161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487777163}
+  - component: {fileID: 487777162}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &487777162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487777161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a744e9d47d4767441ba3d92541e2b694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPermanent: 1
+  LevelsToLast: 0
+  DisplaySprite: {fileID: 21300000, guid: 9c0ac14b73b67df4cac11e8091e6c8d6, type: 3}
+--- !u!4 &487777163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487777161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.21, y: -6.46, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &528604574 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1051062128466052692, guid: da02499eebf6f2d41ae1269d41844b9f, type: 3}
@@ -245,11 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8db50263c1a5341a2604e0a5a4d778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartDelay: 1
-  Ball: {fileID: 0}
-  ball: {fileID: 0}
-  LeftPaddle: {fileID: 0}
-  RightPaddle: {fileID: 0}
 --- !u!114 &933161562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,11 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8db50263c1a5341a2604e0a5a4d778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartDelay: 1
-  Ball: {fileID: 0}
-  ball: {fileID: 0}
-  LeftPaddle: {fileID: 0}
-  RightPaddle: {fileID: 0}
 --- !u!1 &950601545
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1280095983}
   - component: {fileID: 1280095982}
+  - component: {fileID: 1280095984}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -404,6 +441,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1280095984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280095981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b42c49abdf8ba64899b9467eaa5cfa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1477624681 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3869979991882567614, guid: 9c483df8c86e78c498da7877d49cde79, type: 3}
