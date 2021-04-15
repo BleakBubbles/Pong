@@ -23,4 +23,5 @@ public class Game : MonoBehaviour
 	}
 
 	public static List<Item> items = new List<Item>();
+    public static List<Modifier> modifiers = new List<Modifier>();
 }

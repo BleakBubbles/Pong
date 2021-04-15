@@ -36,17 +36,21 @@ public class Item : ItemButSomeAbstractStuff
         ball.OnLevelReset += this.OnReset;
     }
 
-	private void OnReset()
+    public override void Drop(Ball ball, Player playerPaddle)
+    {
+        playerPaddle.DropItem(this);
+        ball.OnLevelReset -= this.OnReset;
+    }
+
+    private void OnReset()
 	{
         if (IsPermanent == false)
         {
             LevelsToLast--;
             if (LevelsToLast <= 0)
             {
-                //something that removes item from inventory 
-            }
-            
+                this.Drop(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
+            }    
         }
-        
 	}
 }
