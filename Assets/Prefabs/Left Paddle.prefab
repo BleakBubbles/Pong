@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3869979991882567601}
   - component: {fileID: 3869979991882567602}
   - component: {fileID: 3869979991882567614}
-  - component: {fileID: 3869979991882567615}
+  - component: {fileID: 4298789088365042692}
   m_Layer: 0
   m_Name: Left Paddle
   m_TagString: Player
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3869979991882567603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 94, y: 56, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 0}
+  m_LocalScale: {x: 0.17897937, y: 0.20586267, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 065fe7aaa4f53bf4a8088c03c0c9b368, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 3.39, y: 12.51}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 5
---- !u!61 &3869979991882567615
+--- !u!61 &4298789088365042692
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,12 +122,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 2}
+    oldSize: {x: 3.39, y: 12.51}
+    newSize: {x: 3.39, y: 12.51}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.39, y: 12.51}
   m_EdgeRadius: 0

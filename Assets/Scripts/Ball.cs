@@ -6,41 +6,38 @@ using TMPro;
 
 public class Ball : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        movement = new Vector2(-1, 0);
-        LeftScore = 0;
-        RightScore = 0;
-        counter = 0;
-        rb.freezeRotation = true;
-    }
 
-    public static string modifier = "";
+    public event System.Action<GameObject, Collider2D> OnAnyBounce;
+    public event System.Action<GameObject, Collider2D> OnHitHorizontalWall;
+    public event System.Action OnLevelReset;
+    public event System.Action<GameObject, Collider2D> OnHitPaddle;
 
-    public float restartDelay = 1f;
-
-    public float speed = 12.5f;
-
+    public Rigidbody2D LeftPaddle;
+    public Rigidbody2D RightPaddle;
     public Rigidbody2D rb;
 
-    public int LeftScore;
-
-    public int RightScore;
+    public static string modifier = "";
+    public float restartDelay = 1f;
+    public float speed = 12.5f;
 
     public int counter;
 
     public TextMeshProUGUI LeftText;
-
     public TextMeshProUGUI RightText;
 
-    public Rigidbody2D LeftPaddle;
-
-    public Rigidbody2D RightPaddle;
-
-    private GameManager gameManager;
-
     public Vector2 movement;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        movement = new Vector2(-1, 0);
+        PongGameManager.Instance.PlayerScore = 0;
+        PongGameManager.Instance.AiScore = 0;
+        counter = 0;
+        rb.freezeRotation = true;
+    }
+
+    
 
     public void Reset(bool isEnding)
     {
@@ -61,25 +58,33 @@ public class Ball : MonoBehaviour
     public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(OnLevelReset != null)
+            OnLevelReset.Invoke();
     }
 
-    // Update is called once per frame
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(OnAnyBounce != null)
+            OnAnyBounce.Invoke(gameObject, collision.collider);
+
         if (collision.collider.tag == "Player")
         {
             float d = collision.contacts[0].point.y - collision.collider.transform.position.y;
             movement = new Vector2(movement.x * -1, d);
+            if(OnHitPaddle != null)
+                OnHitPaddle.Invoke(gameObject, collision.collider);
         }
         else if (collision.collider.tag == "Horizontal Wall")
         {
             movement = new Vector2(movement.x, movement.y * -1);
+            if(OnHitHorizontalWall != null)
+                OnHitHorizontalWall.Invoke(gameObject, collision.collider);
         }
         else if (collision.collider.name == "Left Wall")
         {
-            RightScore++;
-            RightText.text = RightScore.ToString();
-            if (RightScore == 10)
+            PongGameManager.Instance.PlayerScore++;
+            RightText.text = PongGameManager.Instance.PlayerScore.ToString();
+            if (PongGameManager.Instance.PlayerScore >= 10)
             {
                 Invoke("ResetScene", restartDelay);
                 this.Reset(true);
@@ -89,9 +94,9 @@ public class Ball : MonoBehaviour
         }
         else if (collision.collider.name == "Right Wall")
         {
-            LeftScore++;
-            LeftText.text = LeftScore.ToString();
-            if(LeftScore == 10)
+            PongGameManager.Instance.AiScore++;
+            LeftText.text = PongGameManager.Instance.AiScore.ToString();
+            if(PongGameManager.Instance.AiScore >= 10)
             {
                 Invoke("ResetScene", restartDelay);
                 this.Reset(true);
@@ -99,7 +104,10 @@ public class Ball : MonoBehaviour
             }
             this.Reset(false);
         }
+
+        
     }
+
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
