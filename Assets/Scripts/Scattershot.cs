@@ -15,5 +15,7 @@ public class Scattershot : Item
 
     private void onHitPaddle(GameObject ball, Collider2D paddle)
     {
+        var b = Instantiate(ball);
+        b.transform.position = new Vector2(ball.transform.position.x, ball.transform.position.y + UnityEngine.Random.Range(-1.2f,1.2f));
     }
 }
