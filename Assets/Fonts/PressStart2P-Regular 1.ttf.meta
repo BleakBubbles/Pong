@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: c53a135d6bf345d46adf3e3adabe414c
+guid: 63df06823996aa742b60ffe8f12134d4
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -2
+  fontSize: 96
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
   - Press Start 2P
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c53a135d6bf345d46adf3e3adabe414c, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
