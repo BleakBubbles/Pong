@@ -6,7 +6,7 @@ using TMPro;
 
 public class Ball : MonoBehaviour
 {
-
+    GameObject s;
     public event System.Action<GameObject, Collider2D> OnAnyBounce;
     public event System.Action<GameObject, Collider2D> OnHitHorizontalWall;
     public event System.Action OnLevelReset;
