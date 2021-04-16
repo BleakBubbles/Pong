@@ -15,7 +15,6 @@ public class Scattershot : Item
     {
         base.Pickup(ball, playerPaddle);
         ball.OnHitPaddle += this.onHitPaddle;
-        IsPermanent = true;
         LevelsToLast = 2;     
     }
 

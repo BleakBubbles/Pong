@@ -16,7 +16,6 @@ public class LongerPaddle : Item
         base.Pickup(ball, playerPaddle);
         Vector3 scaleChange = new Vector3(0, 0.1f, 0);
         playerPaddle.transform.localScale += scaleChange;
-        IsPermanent = true;
     }
 
     public override void Drop(Ball ball, Player playerPaddle)

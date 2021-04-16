@@ -6,8 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 public class Item : ItemButSomeAbstractStuff
 {
-    public bool IsPermanent = true;
-    public int LevelsToLast;
+    public int LevelsToLast = 1;
     public Sprite DisplaySprite;
     public string ItemName;
 
@@ -18,7 +17,6 @@ public class Item : ItemButSomeAbstractStuff
         Debug.Log("ran item start");
         var btn = this.gameObject.GetOrAddComponent<Button>();
         var img = this.gameObject.GetOrAddComponent<Image>();
-        txt.text = ItemName;
         img.sprite = DisplaySprite;
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener( () => { this.OnClick(); });
@@ -28,14 +26,13 @@ public class Item : ItemButSomeAbstractStuff
         btn.colors = colors;
         var hand = GameObject.Find("Main Canvas/Item Menu");
         CreateItem = hand.GetComponent<CreateItem>();
-        ball = GameObject.Find("Ball").GetComponent<Ball>();
     }
 
     private void OnClick()
     {
         this.Pickup(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
         CreateItem.ClearItems();     
-        ball.Reset(false);
+        PongGameManager.Instance.ballScript.Reset(false);
     }
 
     public override void Pickup(Ball ball, Player playerPaddle)
@@ -48,18 +45,17 @@ public class Item : ItemButSomeAbstractStuff
     {
         playerPaddle.DropItem(this);
         ball.OnLevelReset -= this.OnReset;
+        Debug.Log("Ran Drop");
 
     }
 
     private void OnReset()
 	{
-        if (IsPermanent == false)
-        {
             LevelsToLast--;
             if (LevelsToLast <= 0)
             {
                 this.Drop(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
             }    
-        }
+        
 	}
 }
