@@ -20,7 +20,7 @@ public class Item : ItemButSomeAbstractStuff
         btn.onClick.AddListener( () => { this.OnClick(); });
         btn.targetGraphic = this.GetComponent<Image>();
         ColorBlock colors = btn.colors;
-         colors.highlightedColor = Color.grey;
+        colors.highlightedColor = Color.grey;
         btn.colors = colors;
         t = this.GetType(); 
     }

@@ -19,7 +19,6 @@ public class Game : MonoBehaviour
 			var instance = (Item)Activator.CreateInstance(t);
 			items.Add(instance);
 		}
-
 	}
 
 	public static List<Item> items = new List<Item>();

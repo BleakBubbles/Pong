@@ -7,7 +7,7 @@ public class Scattershot : Item
 {
 	private void Awake()
 	{
-		DisplaySprite = Resources.Load<Sprite>("Sprites/crown");
+		DisplaySprite = Resources.Load<Sprite>("Sprites/scattershot");
         ItemName = "scattershot";
     }
 
@@ -17,6 +17,12 @@ public class Scattershot : Item
         ball.OnHitPaddle += this.onHitPaddle;
         IsPermanent = true;
         LevelsToLast = 2;     
+    }
+
+    public override void Drop(Ball ball, Player playerPaddle)
+    {
+        base.Drop(ball, playerPaddle);
+        ball.OnHitPaddle -= this.onHitPaddle;
     }
 
     private void onHitPaddle(GameObject ball, Collider2D paddle)

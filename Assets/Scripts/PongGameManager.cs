@@ -22,7 +22,7 @@ public class PongGameManager : MonoBehaviour
 		MakeSingleton();
 	}
 
-    private void Start()
+    void Start()
     {
 		Time.timeScale = 0;
 		base.StartCoroutine("Countdown");

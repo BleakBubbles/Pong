@@ -16,7 +16,6 @@ public class Ball : MonoBehaviour
     public Rigidbody2D RightPaddle;
     public Rigidbody2D rb;
 
-    public static string modifier = "";
     public float restartDelay = 1f;
     public float speed = 12.5f;
 
@@ -33,7 +32,7 @@ public class Ball : MonoBehaviour
         movement = new Vector2(-1, 0);
         PongGameManager.Instance.PlayerScore = 0;
         PongGameManager.Instance.AiScore = 0;
-        counter = 0;
+        counter = 1;
         rb.freezeRotation = true;
     }
 
@@ -45,6 +44,8 @@ public class Ball : MonoBehaviour
         if (isEnding)
         {
             movement = Vector2.zero;
+            if (OnLevelReset != null)
+                OnLevelReset.Invoke();
         }
         else
         {
@@ -53,8 +54,6 @@ public class Ball : MonoBehaviour
         counter++;
         LeftPaddle.transform.position = new Vector2(-6, 0);
         RightPaddle.transform.position = new Vector2(6, 0);
-        if (OnLevelReset != null)
-            OnLevelReset.Invoke();
     }
 
     public void ResetScene()
@@ -86,7 +85,6 @@ public class Ball : MonoBehaviour
             RightText.text = PongGameManager.Instance.PlayerScore.ToString();
             if (PongGameManager.Instance.PlayerScore >= 10)
             {
-                Invoke("ResetScene", restartDelay);
                 this.Reset(true);
                 return;
             }
@@ -98,14 +96,12 @@ public class Ball : MonoBehaviour
             LeftText.text = PongGameManager.Instance.AiScore.ToString();
             if(PongGameManager.Instance.AiScore >= 10)
             {
-                Invoke("ResetScene", restartDelay);
+                //Invoke("ResetScene", restartDelay);
                 this.Reset(true);
                 return;
             }
             this.Reset(false);
         }
-
-        
     }
 
     void FixedUpdate()
