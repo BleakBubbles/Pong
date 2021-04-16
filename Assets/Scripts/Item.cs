@@ -9,7 +9,8 @@ public class Item : ItemButSomeAbstractStuff
     public int LevelsToLast;
     public Sprite DisplaySprite;
     public string ItemName;
-    public Type t;
+
+    CreateItem CreateItem = new CreateItem();
     private void Start()
     {
         Debug.Log("ran item start");
@@ -22,12 +23,14 @@ public class Item : ItemButSomeAbstractStuff
         ColorBlock colors = btn.colors;
         colors.highlightedColor = Color.grey;
         btn.colors = colors;
-        t = this.GetType(); 
+        var hand = GameObject.Find("Main Canvas/Item Menu");
+        CreateItem = hand.GetComponent<CreateItem>();
     }
 
     private void OnClick()
     {
         this.Pickup(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
+        CreateItem.ClearItems();
     }
 
     public override void Pickup(Ball ball, Player playerPaddle)
@@ -40,6 +43,7 @@ public class Item : ItemButSomeAbstractStuff
     {
         playerPaddle.DropItem(this);
         ball.OnLevelReset -= this.OnReset;
+
     }
 
     private void OnReset()
