@@ -40,12 +40,15 @@ public class Ball : MonoBehaviour
 
     public void Reset(bool isEnding)
     {
-        base.transform.position = new Vector2(0, 0);
+        gameObject.transform.position = new Vector2(0, 0);
         if (isEnding)
         {
             movement = Vector2.zero;
             if (OnLevelReset != null)
                 OnLevelReset.Invoke();
+            PongGameManager.Instance.PlayerScore = 0;
+            PongGameManager.Instance.AiScore = 0;
+            UpdateScores();
         }
         else
         {
@@ -54,11 +57,6 @@ public class Ball : MonoBehaviour
         counter++;
         LeftPaddle.transform.position = new Vector2(-6, 0);
         RightPaddle.transform.position = new Vector2(6, 0);
-    }
-
-    public void ResetScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -82,10 +80,11 @@ public class Ball : MonoBehaviour
         else if (collision.collider.name == "Left Wall")
         {
             PongGameManager.Instance.PlayerScore++;
-            RightText.text = PongGameManager.Instance.PlayerScore.ToString();
+            UpdateScores();
             if (PongGameManager.Instance.PlayerScore >= 10)
             {
                 this.Reset(true);
+                PongGameManager.Instance.PlayerWins++;
                 return;
             }
             this.Reset(false);
@@ -93,10 +92,11 @@ public class Ball : MonoBehaviour
         else if (collision.collider.name == "Right Wall")
         {
             PongGameManager.Instance.AiScore++;
-            LeftText.text = PongGameManager.Instance.AiScore.ToString();
+            UpdateScores();
             if(PongGameManager.Instance.AiScore >= 10)
             {
                 //Invoke("ResetScene", restartDelay);
+                PongGameManager.Instance.AiWins++;
                 this.Reset(true);
                 return;
             }
@@ -104,6 +104,11 @@ public class Ball : MonoBehaviour
         }
     }
 
+    public void UpdateScores()
+	{
+        this.LeftText.text = PongGameManager.Instance.AiScore.ToString();
+        this.RightText.text = PongGameManager.Instance.PlayerScore.ToString();
+    }
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);

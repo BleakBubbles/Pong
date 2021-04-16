@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class Item : ItemButSomeAbstractStuff
 {
     public bool IsPermanent = true;
@@ -11,11 +12,13 @@ public class Item : ItemButSomeAbstractStuff
     public string ItemName;
 
     CreateItem CreateItem = new CreateItem();
+    Ball ball = new Ball();
     private void Start()
     {
         Debug.Log("ran item start");
         var btn = this.gameObject.GetOrAddComponent<Button>();
         var img = this.gameObject.GetOrAddComponent<Image>();
+        txt.text = ItemName;
         img.sprite = DisplaySprite;
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener( () => { this.OnClick(); });
@@ -25,12 +28,14 @@ public class Item : ItemButSomeAbstractStuff
         btn.colors = colors;
         var hand = GameObject.Find("Main Canvas/Item Menu");
         CreateItem = hand.GetComponent<CreateItem>();
+        ball = GameObject.Find("Ball").GetComponent<Ball>();
     }
 
     private void OnClick()
     {
         this.Pickup(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
-        CreateItem.ClearItems();
+        CreateItem.ClearItems();     
+        ball.Reset(false);
     }
 
     public override void Pickup(Ball ball, Player playerPaddle)

@@ -10,6 +10,9 @@ public class PongGameManager : MonoBehaviour
 	public int AiScore;
 	public int PlayerScore;
 
+	public int AiWins;
+	public int PlayerWins;
+
 	public Player Player;
 	public GameObject AiPaddle;
 	public Ball ballScript;
