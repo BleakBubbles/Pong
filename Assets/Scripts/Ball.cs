@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour
 {
     public event System.Action<GameObject, Collider2D> OnAnyBounce;
     public event System.Action<GameObject, Collider2D> OnHitHorizontalWall;
-    public event System.Action OnLevelReset;
+    public event System.Action<Ball> OnLevelReset;
     public event System.Action<GameObject, Collider2D> OnHitPaddle;
 
     public Rigidbody2D LeftPaddle;
@@ -18,6 +18,8 @@ public class Ball : MonoBehaviour
 
     public float restartDelay = 1f;
     public float speed = 12.5f;
+    public float speedModifier = 1f;
+    public bool scoresPoints = true;
 
     public int counter;
 
@@ -45,7 +47,7 @@ public class Ball : MonoBehaviour
         {
             movement = Vector2.zero;
             if (OnLevelReset != null)
-                OnLevelReset.Invoke();
+                OnLevelReset.Invoke(this);
             PongGameManager.Instance.PlayerScore = 0;
             PongGameManager.Instance.AiScore = 0;
             UpdateScores();
@@ -68,6 +70,7 @@ public class Ball : MonoBehaviour
         {
             float d = collision.contacts[0].point.y - collision.collider.transform.position.y;
             movement = new Vector2(movement.x * -1, d);
+            Debug.Log(speedModifier);
             if(OnHitPaddle != null)
                 OnHitPaddle.Invoke(gameObject, collision.collider);
         }
@@ -79,28 +82,42 @@ public class Ball : MonoBehaviour
         }
         else if (collision.collider.name == "Left Wall")
         {
-            PongGameManager.Instance.PlayerScore++;
-            UpdateScores();
-            if (PongGameManager.Instance.PlayerScore >= 10)
+            if (this.scoresPoints)
             {
-                this.Reset(true);
-                PongGameManager.Instance.PlayerWins++;
-                return;
+                PongGameManager.Instance.PlayerScore++;
+                UpdateScores();
+                if (PongGameManager.Instance.PlayerScore >= 10)
+                {
+                    this.Reset(true);
+                    PongGameManager.Instance.PlayerWins++;
+                    return;
+                }
+                this.Reset(false);
             }
-            this.Reset(false);
+            else
+            {
+                movement = new Vector2(movement.x * -1, movement.y);
+            }
         }
         else if (collision.collider.name == "Right Wall")
         {
-            PongGameManager.Instance.AiScore++;
-            UpdateScores();
-            if(PongGameManager.Instance.AiScore >= 10)
+            if (this.scoresPoints)
             {
-                //Invoke("ResetScene", restartDelay);
-                PongGameManager.Instance.AiWins++;
-                this.Reset(true);
-                return;
+                PongGameManager.Instance.AiScore++;
+                UpdateScores();
+                if (PongGameManager.Instance.AiScore >= 10)
+                {
+                    //Invoke("ResetScene", restartDelay);
+                    PongGameManager.Instance.AiWins++;
+                    this.Reset(true);
+                    return;
+                }
+                this.Reset(false);
             }
-            this.Reset(false);
+            else
+            {
+                movement = new Vector2(movement.x * -1, movement.y);
+            }
         }
     }
 
@@ -111,7 +128,10 @@ public class Ball : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
-        LeftPaddle.MovePosition(LeftPaddle.position + new Vector2(0, Mathf.Clamp(base.transform.position.y - LeftPaddle.transform.position.y, -1, 1)) * 7.5f * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * speed * speedModifier * Time.fixedDeltaTime);
+        if (this.scoresPoints)
+        {
+            LeftPaddle.MovePosition(LeftPaddle.position + new Vector2(0, Mathf.Clamp(base.transform.position.y - LeftPaddle.transform.position.y, -1, 1)) * 7.5f * Time.fixedDeltaTime);
+        }
     }
 }

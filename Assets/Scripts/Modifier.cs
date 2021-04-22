@@ -26,7 +26,7 @@ public class Modifier : ModifierButSomeAbstractStuff
         ball.OnLevelReset -= this.OnReset;
     }
 
-    private void OnReset()
+    private void OnReset(Ball ball)
     {
         if (IsPermanent == false)
         {

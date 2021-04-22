@@ -49,13 +49,12 @@ public class Item : ItemButSomeAbstractStuff
 
     }
 
-    private void OnReset()
+    private void OnReset(Ball ball)
 	{
-            LevelsToLast--;
-            if (LevelsToLast <= 0)
-            {
-                this.Drop(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
-            }    
-        
+        LevelsToLast--;
+        if (LevelsToLast <= 0)
+        {
+            this.Drop(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
+        }   
 	}
 }

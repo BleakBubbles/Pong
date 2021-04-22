@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
 public class CreateItem : MonoBehaviour
 {
 
@@ -17,17 +18,22 @@ public class CreateItem : MonoBehaviour
 	private GameObject Item1;
 	private GameObject Item2;
 	private GameObject Item3;
+
+	public TextMeshProUGUI ItemName1;
+	public TextMeshProUGUI ItemName2;
+	public TextMeshProUGUI ItemName3;
+
 	void Start()
     {
 		ballScipt.OnLevelReset += this.HandleInstantiateItem;
     }
 
-	public void HandleInstantiateItem()
+	public void HandleInstantiateItem(Ball ball)
     {
 		Panel.SetActive(true);
-		var item1 = UnityEngine.Random.Range(0, Game.items.Count - 1);
-		var item2 = UnityEngine.Random.Range(0, Game.items.Count - 1);
-		var item3 = UnityEngine.Random.Range(0, Game.items.Count - 1);
+		var item1 = UnityEngine.Random.Range(0, Game.items.Count);
+		var item2 = UnityEngine.Random.Range(0, Game.items.Count);
+		var item3 = UnityEngine.Random.Range(0, Game.items.Count);
 		this.InstantiateItem(item1, item2, item3);
     }
 
@@ -43,6 +49,7 @@ public class CreateItem : MonoBehaviour
 			Item1.transform.parent = canvas.transform;
 			Item1.transform.localScale = new Vector3(1, 1, 1);
 			Item1.transform.position = pos1.position;
+			ItemName1.text = Item1.name;
 		}
 		else
 		{
@@ -58,6 +65,7 @@ public class CreateItem : MonoBehaviour
 			Item2.transform.parent= canvas.transform;
 			Item2.transform.localScale = new Vector3(1, 1, 1);
 			Item2.transform.position = pos2.position;
+			ItemName2.text = Item2.name;
 		}
 		else
 		{
@@ -73,6 +81,7 @@ public class CreateItem : MonoBehaviour
 			Item3.transform.parent= canvas.transform;
 			Item3.transform.localScale = new Vector3(1, 1, 1);
 			Item3.transform.position = pos3.position;
+			ItemName3.text = Item3.name;
 		}
 		else
 		{

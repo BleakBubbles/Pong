@@ -362,6 +362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AiScore: 0
   PlayerScore: 0
+  AiWins: 0
+  PlayerWins: 0
   Player: {fileID: 1065545209}
   AiPaddle: {fileID: 1009402865}
   ballScript: {fileID: 2139998763}
@@ -716,6 +718,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1051062128860208077 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 803917924099274189, guid: da02499eebf6f2d41ae1269d41844b9f, type: 3}
+  m_PrefabInstance: {fileID: 1051062128860208074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1051062128860208078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8649667742031473602, guid: da02499eebf6f2d41ae1269d41844b9f, type: 3}
+  m_PrefabInstance: {fileID: 1051062128860208074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1051062128860208079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5830016558417168709, guid: da02499eebf6f2d41ae1269d41844b9f, type: 3}
+  m_PrefabInstance: {fileID: 1051062128860208074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1051062128860208080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 172358172375935910, guid: da02499eebf6f2d41ae1269d41844b9f, type: 3}
@@ -738,6 +773,9 @@ MonoBehaviour:
   pos3: {fileID: 1787614134}
   ballScipt: {fileID: 2139998763}
   Panel: {fileID: 794575913}
+  ItemName1: {fileID: 1051062128860208079}
+  ItemName2: {fileID: 1051062128860208078}
+  ItemName3: {fileID: 1051062128860208077}
 --- !u!1001 &1444368383326458946
 PrefabInstance:
   m_ObjectHideFlags: 0

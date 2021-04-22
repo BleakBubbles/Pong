@@ -15,12 +15,19 @@ public class ForcefulPaddle : Item
     {
         base.Pickup(ball, playerPaddle);
         ball.OnHitPaddle += this.onHitPaddle;
+        ball.OnLevelReset += this.onLevelReset;
     }
 
     public override void Drop(Ball ball, Player playerPaddle)
     {
         base.Drop(ball, playerPaddle);
         ball.OnHitPaddle -= this.onHitPaddle;
+        ball.OnLevelReset -= this.onLevelReset;
+    }
+
+    private void onLevelReset(Ball ball)
+    {
+        ball.speedModifier = 1f;
     }
 
     private void onHitPaddle(GameObject ball, Collider2D paddle)
@@ -28,11 +35,11 @@ public class ForcefulPaddle : Item
         Ball ballScript = ball.GetComponent<Ball>();
         if (paddle.name == "Right Paddle")
         {
-            ballScript.speed *= 1.25f;
+            ballScript.speedModifier = 1.25f;
         }
-        else if(paddle.tag == "Left Paddle")
+        else if(paddle.name == "Left Paddle")
         {
-            ballScript.speed *= 0.8f;
+            ballScript.speedModifier = 1f;
         }
     }
 }
