@@ -19,7 +19,6 @@ public class Ball : MonoBehaviour
     public float restartDelay = 1f;
     public float speed = 12.5f;
     public float speedModifier = 1f;
-    public bool scoresPoints = true;
 
     public int counter;
 
@@ -70,7 +69,7 @@ public class Ball : MonoBehaviour
         {
             float d = collision.contacts[0].point.y - collision.collider.transform.position.y;
             movement = new Vector2(movement.x * -1, d);
-            Debug.Log(speedModifier);
+    
             if(OnHitPaddle != null)
                 OnHitPaddle.Invoke(gameObject, collision.collider);
         }
@@ -82,8 +81,6 @@ public class Ball : MonoBehaviour
         }
         else if (collision.collider.name == "Left Wall")
         {
-            if (this.scoresPoints)
-            {
                 PongGameManager.Instance.PlayerScore++;
                 UpdateScores();
                 if (PongGameManager.Instance.PlayerScore >= 10)
@@ -93,16 +90,9 @@ public class Ball : MonoBehaviour
                     return;
                 }
                 this.Reset(false);
-            }
-            else
-            {
-                movement = new Vector2(movement.x * -1, movement.y);
-            }
         }
         else if (collision.collider.name == "Right Wall")
         {
-            if (this.scoresPoints)
-            {
                 PongGameManager.Instance.AiScore++;
                 UpdateScores();
                 if (PongGameManager.Instance.AiScore >= 10)
@@ -113,11 +103,6 @@ public class Ball : MonoBehaviour
                     return;
                 }
                 this.Reset(false);
-            }
-            else
-            {
-                movement = new Vector2(movement.x * -1, movement.y);
-            }
         }
     }
 
@@ -129,9 +114,7 @@ public class Ball : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * speed * speedModifier * Time.fixedDeltaTime);
-        if (this.scoresPoints)
-        {
-            LeftPaddle.MovePosition(LeftPaddle.position + new Vector2(0, Mathf.Clamp(base.transform.position.y - LeftPaddle.transform.position.y, -1, 1)) * 7.5f * Time.fixedDeltaTime);
-        }
+        LeftPaddle.MovePosition(LeftPaddle.position + new Vector2(0, Mathf.Clamp(base.transform.position.y - LeftPaddle.transform.position.y, -1, 1)) * 7.5f * Time.fixedDeltaTime);
+        
     }
 }

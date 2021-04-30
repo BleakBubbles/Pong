@@ -20,6 +20,7 @@ public class PongGameManager : MonoBehaviour
 	public TextMeshProUGUI countdown;
 	public GameObject panel;
 
+	public CreateItemAndModifier createItemAndModifier = new CreateItemAndModifier();
 	void Awake()
 	{
 		MakeSingleton();

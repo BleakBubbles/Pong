@@ -10,28 +10,28 @@ public class Item : ItemButSomeAbstractStuff
     public Sprite DisplaySprite;
     public string ItemName;
 
-    CreateItem CreateItem = new CreateItem();
-    Ball ball = new Ball();
     private void Start()
     {
-        Debug.Log("ran item start");
+        StartCoroutine(LateStart());     
+    }
+    private IEnumerator LateStart()
+	{
+        yield return new WaitForSecondsRealtime(0.001f);
         var btn = this.gameObject.GetOrAddComponent<Button>();
         var img = this.gameObject.GetOrAddComponent<Image>();
         img.sprite = DisplaySprite;
         btn.onClick.RemoveAllListeners();
-        btn.onClick.AddListener( () => { this.OnClick(); });
+        btn.onClick.AddListener(() => { this.OnClick(); });
         btn.targetGraphic = this.GetComponent<Image>();
         ColorBlock colors = btn.colors;
         colors.highlightedColor = Color.grey;
         btn.colors = colors;
-        var hand = GameObject.Find("Main Canvas/Item Menu");
-        CreateItem = hand.GetComponent<CreateItem>();
     }
 
     private void OnClick()
     {
         this.Pickup(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
-        CreateItem.ClearItems();     
+        PongGameManager.Instance.createItemAndModifier.Clear();     
         PongGameManager.Instance.ballScript.Reset(false);
     }
 

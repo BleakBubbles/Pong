@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Vertical Wall
   - Horizontal Wall
+  - ShadowBall
   layers:
   - Default
   - TransparentFX

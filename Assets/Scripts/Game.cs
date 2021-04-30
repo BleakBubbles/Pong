@@ -19,6 +19,11 @@ public class Game : MonoBehaviour
 			var instance = (Item)Activator.CreateInstance(t);
 			items.Add(instance);
 		}
+		foreach (Type t in FindDerivedTypes(Assembly.GetExecutingAssembly(), typeof(Modifier)))
+		{
+			var instance = (Modifier)Activator.CreateInstance(t);
+			modifiers.Add(instance);
+		}
 	}
 
 	public static List<Item> items = new List<Item>();
