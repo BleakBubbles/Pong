@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -20,7 +19,8 @@ public class PongGameManager : MonoBehaviour
 	public TextMeshProUGUI countdown;
 	public GameObject panel;
 
-	public CreateItemAndModifier createItemAndModifier = new CreateItemAndModifier();
+	public CreateItemAndModifier createItemAndModifier;
+
 	void Awake()
 	{
 		MakeSingleton();

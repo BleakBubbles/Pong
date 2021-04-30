@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ForcefulPaddle : Item
 {
@@ -34,12 +32,8 @@ public class ForcefulPaddle : Item
     {
         Ball ballScript = ball.GetComponent<Ball>();
         if (paddle.name == "Right Paddle")
-        {
             ballScript.speedModifier = 1.25f;
-        }
         else if(paddle.name == "Left Paddle")
-        {
             ballScript.speedModifier = 1f;
-        }
     }
 }

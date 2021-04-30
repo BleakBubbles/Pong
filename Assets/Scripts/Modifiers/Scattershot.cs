@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Scattershot : Modifier
 {
-	private void Awake()
+    List<GameObject> shadowBalls = new List<GameObject>();
+    private void Awake()
 	{
 		DisplaySprite = Resources.Load<Sprite>("Sprites/scattershot");
         ModifierName = "scattershot";
     }
 
-    List<GameObject> shadowBalls = new List<GameObject>();
-
     public override void Activate(Ball ball, Player playerPaddle)
     {
         base.Activate(ball, playerPaddle);
-        ball.OnHitPaddle += this.onHitPaddle;
-        var b = ShadowBall.CreateShadowBall(new Vector2(ball.transform.position.x, ball.transform.position.y + UnityEngine.Random.Range(-1.2f, 1.2f)));       
-        shadowBalls.Add(b);
+        ball.OnHitPaddle += this.onHitPaddle; 
+        shadowBalls.Add(ShadowBall.CreateShadowBall(new Vector2(ball.transform.position.x, ball.transform.position.y + UnityEngine.Random.Range(-1.2f, 1.2f))));
         LevelsToLast = 1;
     }
 
@@ -34,10 +30,9 @@ public class Scattershot : Modifier
 
     private void onHitPaddle(GameObject ball, Collider2D paddle)
     {
-        if(UnityEngine.Random.value <= 0.1f)
+        if(Random.value <= 0.1f)
         {
-            var b = ShadowBall.CreateShadowBall(new Vector2(ball.transform.position.x, ball.transform.position.y + UnityEngine.Random.Range(-1.2f, 1.2f)));
-            shadowBalls.Add(b);
+            shadowBalls.Add(ShadowBall.CreateShadowBall(new Vector2(ball.transform.position.x, ball.transform.position.y + UnityEngine.Random.Range(-1.2f, 1.2f))));
         }
     }
 }

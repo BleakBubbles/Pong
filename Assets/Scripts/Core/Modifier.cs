@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +7,12 @@ public class Modifier : ModifierButSomeAbstractStuff
     public int LevelsToLast;
     public Sprite DisplaySprite;
     public string ModifierName;
-    // Start is called before the first frame update
+
     void Start()
     {
         StartCoroutine(LateStart());       
     }
+
     private IEnumerator LateStart()
     {
         yield return new WaitForSecondsRealtime(0.001f);
@@ -36,11 +35,10 @@ public class Modifier : ModifierButSomeAbstractStuff
 
     private void OnReset(Ball ball)
     {
-            LevelsToLast--;
-            if (LevelsToLast <= 0)
-            {
-                this.Deactivate(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
-            }
+        LevelsToLast--;
+
+        if (LevelsToLast <= 0)
+            this.Deactivate(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
         
     }
 }

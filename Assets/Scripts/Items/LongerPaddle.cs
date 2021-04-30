@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LongerPaddle : Item
 {
-    // Start is called before the first frame update
     void Awake()
     {
         DisplaySprite = Resources.Load<Sprite>("Sprites/longer_paddle");

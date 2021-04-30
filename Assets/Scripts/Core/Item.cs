@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 public class Item : ItemButSomeAbstractStuff
 {
     public int LevelsToLast = 1;
@@ -28,13 +26,6 @@ public class Item : ItemButSomeAbstractStuff
         btn.colors = colors;
     }
 
-    private void OnClick()
-    {
-        this.Pickup(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
-        PongGameManager.Instance.createItemAndModifier.Clear();     
-        PongGameManager.Instance.ballScript.Reset(false);
-    }
-
     public override void Pickup(Ball ball, Player playerPaddle)
     {
         playerPaddle.AcquireItem(this);
@@ -53,8 +44,15 @@ public class Item : ItemButSomeAbstractStuff
 	{
         LevelsToLast--;
         if (LevelsToLast <= 0)
-        {
             this.Drop(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
-        }   
+        
 	}
+
+    private void OnClick()
+    {
+        this.Pickup(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
+        PongGameManager.Instance.createItemAndModifier.Clear();
+        PongGameManager.Instance.ballScript.Reset(false);
+    }
+
 }
