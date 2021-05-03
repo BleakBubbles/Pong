@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShadowBall : MonoBehaviour
 {
     private Vector2 movement;
-    // Start is called before the first frame update
+    private Rigidbody2D rb;
+
     void Start()
     {
         movement = new Vector2(-1, 0);
+        rb = gameObject.GetOrAddComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -42,9 +45,9 @@ public class ShadowBall : MonoBehaviour
         b.AddComponent<BoxCollider2D>();
         var r = b.AddComponent<SpriteRenderer>();
         r.sprite = Resources.Load<Sprite>("Sprites/Ball");
-        var rb = b.AddComponent<Rigidbody2D>();
-        rb.GetComponent<Rigidbody2D>().freezeRotation = true;
-        rb.GetComponent<Rigidbody2D>().collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        var Rb = b.GetOrAddComponent<Rigidbody2D>();
+        Rb.freezeRotation = true;
+        Rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         b.transform.position = InitPos;
         var ballRenderer = b.GetComponent<Renderer>();
         b.tag = "ShadowBall";
@@ -56,8 +59,7 @@ public class ShadowBall : MonoBehaviour
     }
     void FixedUpdate()
     {
-        gameObject.GetComponent<Rigidbody2D>().MovePosition(gameObject.GetComponent<Rigidbody2D>().position + movement * 11.5f * Time.fixedDeltaTime);
-        
+            rb.MovePosition(rb.position + movement * 11.5f * Time.fixedDeltaTime);
     }
     void Update()
 	{
