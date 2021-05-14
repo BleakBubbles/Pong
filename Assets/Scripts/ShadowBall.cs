@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class ShadowBall : MonoBehaviour
 {
-    private Vector2 movement;
-    private Rigidbody2D rb;
+    private Vector3 movement;
 
     void Start()
     {
         movement = new Vector2(-1, 0);
-        rb = gameObject.GetOrAddComponent<Rigidbody2D>();
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -45,7 +44,7 @@ public class ShadowBall : MonoBehaviour
         b.AddComponent<BoxCollider2D>();
         var r = b.AddComponent<SpriteRenderer>();
         r.sprite = Resources.Load<Sprite>("Sprites/Ball");
-        var Rb = b.GetOrAddComponent<Rigidbody2D>();
+        var Rb = b.AddComponent<Rigidbody2D>();
         Rb.freezeRotation = true;
         Rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         b.transform.position = InitPos;
@@ -59,7 +58,7 @@ public class ShadowBall : MonoBehaviour
     }
     void FixedUpdate()
     {
-            rb.MovePosition(rb.position + movement * 11.5f * Time.fixedDeltaTime);
+            gameObject.GetComponent<Rigidbody2D>().MovePosition(gameObject.transform.position + movement * 11.5f * Time.fixedDeltaTime);
     }
     void Update()
 	{

@@ -7,7 +7,7 @@ public class Scattershot : Modifier
     private void Awake()
 	{
 		DisplaySprite = Resources.Load<Sprite>("Sprites/scattershot");
-        ModifierName = "scattershot";
+        ModifierName = "Scattershot";
     }
 
     public override void Activate(Ball ball, Player playerPaddle)

@@ -38,7 +38,7 @@ public class Modifier : ModifierButSomeAbstractStuff
         LevelsToLast--;
 
         if (LevelsToLast <= 0)
-            this.Deactivate(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
+            Deactivate(PongGameManager.Instance.ballScript, PongGameManager.Instance.Player);
         
     }
 }

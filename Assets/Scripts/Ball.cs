@@ -29,6 +29,14 @@ public class Ball : MonoBehaviour
 
     [SerializeField]
     private bool ForceEnd;
+    [SerializeField]
+    private int BouncesSinceHitTop;
+    [SerializeField]
+    private int BouncesSinceHitBot;
+    [SerializeField]
+    private int BouncesSinceHitRight;
+    [SerializeField]
+    private int BouncesSinceHitLeft;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +65,10 @@ public class Ball : MonoBehaviour
         {
             movement = new Vector2(Mathf.Pow(-1, counter), 0);
         }
+        BouncesSinceHitLeft = 0;
+        BouncesSinceHitRight = 0;
+        BouncesSinceHitTop = 0;
+        BouncesSinceHitBot = 0;
         counter++;
         LeftPaddle.transform.position = new Vector2(-6, 0);
         RightPaddle.transform.position = new Vector2(6, 0);
@@ -64,24 +76,38 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(OnAnyBounce != null)
+        BouncesSinceHitLeft++;
+        BouncesSinceHitRight++;
+        BouncesSinceHitTop++;
+        BouncesSinceHitBot++;
+        if (OnAnyBounce != null)
             OnAnyBounce.Invoke(gameObject, collision.collider);
 
         if (collision.collider.tag == "Player")
         {
+            if (collision.collider.gameObject.name == "Left Paddle")
+                BouncesSinceHitLeft = 0;
+            else
+                BouncesSinceHitRight = 0;
+
             float d = collision.contacts[0].point.y - collision.collider.transform.position.y;
             movement = new Vector2(movement.x * -1, d);
     
             if(OnHitPaddle != null)
                 OnHitPaddle.Invoke(gameObject, collision.collider);
         }
-        else if (collision.collider.tag == "Horizontal Wall")
+        if (collision.collider.tag == "Horizontal Wall")
         {
+            if (collision.collider.gameObject.name == "Top Wall")
+                BouncesSinceHitTop = 0;
+            else
+                BouncesSinceHitBot = 0;
+
             movement = new Vector2(movement.x, movement.y * -1);
             if(OnHitHorizontalWall != null)
                 OnHitHorizontalWall.Invoke(gameObject, collision.collider);
         }
-        else if (collision.collider.name == "Left Wall")
+        if (collision.collider.name == "Left Wall")
         {
                 PongGameManager.Instance.PlayerScore++;
                 UpdateScores();
@@ -93,13 +119,12 @@ public class Ball : MonoBehaviour
                 }
                 this.Reset(false);
         }
-        else if (collision.collider.name == "Right Wall")
+        if (collision.collider.name == "Right Wall")
         {
                 PongGameManager.Instance.AiScore++;
                 UpdateScores();
                 if (PongGameManager.Instance.AiScore >= 10)
                 {
-                    //Invoke("ResetScene", restartDelay);
                     PongGameManager.Instance.AiWins++;
                     this.Reset(true);
                     return;
@@ -121,7 +146,11 @@ public class Ball : MonoBehaviour
         if(ForceEnd == true)
 		{
             Reset(true);
+
             ForceEnd = false;
 		}
+        
+        if (BouncesSinceHitLeft >= 15 || BouncesSinceHitRight >= 15 || BouncesSinceHitTop >= 15 || BouncesSinceHitBot >= 15)
+            Reset(false);
     }
 }

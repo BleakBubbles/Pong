@@ -6,7 +6,8 @@ public class StartGameManager : MonoBehaviour
 {
     public TextMeshProUGUI start;
     private bool flash = true;
-    private int localFrameCount;
+    private int localFrameCount
+        ;
 
     void FixedUpdate()
     {
