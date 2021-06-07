@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
 
     List<Item> items = new List<Item>();
@@ -37,11 +38,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.y = Input.GetAxisRaw("Vertical");
+        if(isLocalPlayer)
+            movement.y = Input.GetAxisRaw("Vertical");
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        if (isLocalPlayer)
+            rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 }

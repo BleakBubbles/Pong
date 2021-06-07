@@ -141,7 +141,7 @@ public class Ball : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * speed * speedModifier * Time.fixedDeltaTime);
-        LeftPaddle.MovePosition(LeftPaddle.position + new Vector2(0, Mathf.Clamp(base.transform.position.y - LeftPaddle.transform.position.y, -1, 1)) * 7.5f * Time.fixedDeltaTime);
+        
         
         if(ForceEnd == true)
 		{
