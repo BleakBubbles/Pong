@@ -16,6 +16,7 @@ public class NetworkManager : Mirror.NetworkManager
         // add player at correct spawn position
         Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
+        
         NetworkServer.AddPlayerForConnection(conn, player);
 
         // spawn ball if two players
