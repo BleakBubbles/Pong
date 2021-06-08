@@ -6,18 +6,22 @@ using Mirror;
 [AddComponentMenu("")]
 public class NetworkManager : Mirror.NetworkManager
 {
-    public GameObject ball;
+    private GameObject ball;
+
+    public Transform leftRacketSpawn;
+    public Transform rightRacketSpawn;
+
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         // add player at correct spawn position
-        Transform start = numPlayers == 0 ? PongGameManager.Instance.AiPaddle.transform : PongGameManager.Instance.Player.gameObject.transform;
+        Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
         GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
 
         // spawn ball if two players
         if (numPlayers == 2)
         {
-            Instantiate(ball);
+            ball = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "Ball"));
             NetworkServer.Spawn(ball);
         }
     }

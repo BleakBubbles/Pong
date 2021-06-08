@@ -37,8 +37,14 @@ public class Ball : MonoBehaviour
     private int BouncesSinceHitRight;
     [SerializeField]
     private int BouncesSinceHitLeft;
-    // Start is called before the first frame update
-    void Start()
+
+	private void Awake()
+	{
+        PongGameManager.Instance.ballScript = this;
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         movement = new Vector2(-1, 0);
         PongGameManager.Instance.PlayerScore = 0;

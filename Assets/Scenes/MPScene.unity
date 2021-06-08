@@ -279,11 +279,11 @@ MonoBehaviour:
   onlineScene: 
   transport: {fileID: 765324613}
   networkAddress: localhost
-  maxConnections: 100
+  maxConnections: 2
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1240244544407914, guid: b1651eaf8c7564a1c86031dfbb8a7b28, type: 3}
+  playerPrefab: {fileID: 3339379871343611152, guid: 3dd10896124c1354aa32cdfbf6b05401, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs: []
@@ -473,6 +473,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5553925093135277464, guid: b1e353fa606869b478b9525840be206f, type: 3}
+      propertyPath: sceneId
+      value: 2132620639
+      objectReference: {fileID: 0}
     - target: {fileID: 2379567463681992456, guid: b1e353fa606869b478b9525840be206f, type: 3}
       propertyPath: m_Name
       value: Ball
